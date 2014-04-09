@@ -1,0 +1,6 @@
+<ul>
+	{{for item in rows:}}
+	<li><a href={{=URL('download',args=item['note'])}}>{{=item['note']}}</a><br>Added on: {{=item['added']}}</li>
+	<br>
+	{{pass}}
+</ul>

@@ -93,3 +93,8 @@ if auth.user is None:
 else:
     db.define_table('notes_upload',Field('email','string', default=auth.user.email), Field('added', 'datetime', default=datetime.datetime.now()), Field('note', 'upload'))
 auth.settings.login_next = URL('login_home')
+if auth.user is None:
+    pass
+else:
+    db.define_table('voice',Field('email','string',default=auth.user.email),Field('added','datetime',default=datetime.datetime.now()),Field('note','string'),Field('title','string'))
+auth.settings.login_next=URL('login_home')    

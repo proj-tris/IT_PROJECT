@@ -28,22 +28,28 @@ def login_home():
 
 def text():
     return dict()
-
+@auth.requires_login()
 def upload_file():
     form = SQLFORM(db.notes_upload)
     form.process()
     return dict(form = form)
 
-
+@auth.requires_login()
 def view_uploads():
     rows = db(db.notes_upload.email==auth.user.email).select(db.notes_upload.ALL)      
     return dict(rows = rows)
-
+@auth.requires_login()
 def temp():
     db.text1.insert(note=request.get_vars['note'], font=request.get_vars['font'], title=request.get_vars['title'])
     return dict()
     
-
+@auth.requires_login()
+def voice_upload():
+    return dict()
+@auth.requires_login()
+def voicedb():
+    db.voice.insert(note=request.get_vars['text'],title=request.get_vars['head'])
+    return dict()
 def user():
     """
     exposes:

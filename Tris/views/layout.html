@@ -121,7 +121,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <ul id="navbar" class="nav pull-right">{{='auth' in globals() and auth.navbar(mode="dropdown", referrer_actions=None) or ''}}</ul>
+        <ul id="navbar" class="nav pull-right">{{='auth' in globals() and auth.navbar(mode="dropdown") or ''}}</ul>
         <div class="{{='nav-collapse' if is_mobile else 'nav'}}">
           <a href="http://127.0.0.1:8000/Tris/default/index" class="home_hover"><div id="home_nav">Home</div></a>
         </div><!--/.nav-collapse -->

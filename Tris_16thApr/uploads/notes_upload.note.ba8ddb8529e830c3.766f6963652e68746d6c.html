@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+		function fun () {
+			var recognition = new webkitSpeechRecognition();
+			recognition.lang = "en-US";
+			recognition.onresult = function(event) { 
+  				console.log(event) 
+			}
+			recognition.start();
+		}
+		</script>
+	</head>
+	<body>
+		<input type="text" x-webkit-speech onclick="fun()"/>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+{{extend 'layout1.html'}}
+<script type="text/javascript">
+
+</script>
+<style type="text/css">
+	.edit{
+		position: relative;
+		left: 10%;
+	}
+</style>
+<ol>
+		{{key=0}}
+		{{for item in reversed(rows):}}
+	<li><a href='http://127.0.0.1:8000/Tris/default/peak?q={{=item['title']}}&type=text'>{{=item['title']}}</a><br>Added on: {{=item['added']}}<a  class ="edit" id="{{=key}}" href = 'http://127.0.0.1:8000/Tris/default/edit?q={{=item['title']}}&type=text' >Edit</a></li>
+	<br>
+		{{key=key+1}}
+	{{pass}}
+</ol>

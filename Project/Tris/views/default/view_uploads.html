@@ -1,0 +1,13 @@
+{{extend 'layout1.html'}}
+<style type="text/css">
+	.edit{
+		position: relative;
+		left: 10%;
+	}
+</style>
+<ol>
+	{{for item in reversed(rows):}}
+	<li><a href={{=URL('download',args=item['note'])}}>{{=item['title']}}</a><br>Added on: {{=item['added']}}</li>
+	<br>
+	{{pass}}
+</ol>

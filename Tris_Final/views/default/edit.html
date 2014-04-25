@@ -1,0 +1,74 @@
+{{extend 'layout1.html'}}
+<script type="text/javascript">
+	function loaded () {
+		var height = $(window).height();
+		document.getElementById("txtarea").style.height = height*0.70+"px" ;
+	}
+	function loadXMLDoc()
+	{
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+  		{// code for IE7+, Firefox, Chrome, Opera, Safari
+ 			xmlhttp=new XMLHttpRequest();
+		}
+		else
+  		{// code for IE6, IE5
+  			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function()
+		{
+  			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	    	{
+	    		alert("Success");
+    		}
+  		}
+  		var note = document.getElementById('txtarea').value;
+  		var title = document.getElementById('title_tag').innerHTML;
+		xmlhttp.open("GET","upd?note=" + note + "&title=" + title +"&type={{=out['type']}}",true);
+		xmlhttp.send();
+	}
+</script>
+<style type="text/css">
+	#txtarea{
+		display: block;
+		width: 100%;
+		margin-top: 2em;
+		position: relative;
+		border: none;
+		font-family: {{=out['font']}};
+	}
+	body{
+		background-image: url("http://127.0.0.1:8000/Tris/static/images/text_input.jpg");
+	}
+	#save{
+		height: 2em;
+		width: 6em;
+		background-color: #4AB825;
+		border-radius: 10px;
+	}
+	#title_inp{
+		list-style: none;
+		margin-left: 15%;
+		margin-top: -3%;
+	}
+	#title_inp > li{
+		float: left;
+		margin-left: -15%;
+		padding-right: 40em;
+	}
+	#title_tag{
+		position: relative;
+		margin-left: 35em;
+		top: -1.5em;
+		font-weight: bold;
+	}
+</style>
+<body onload="loaded()">
+	<div>
+		<ul id="title_inp">
+			<li><input type="submit" value="Update" id="save" onclick="loadXMLDoc()"></li>
+			<li><span id='title_tag'>{{=out['title']}}</span></li>
+		</ul>
+	</div>
+		<textarea id="txtarea" wrap="soft">{{=out['note']}}</textarea>
+</body>

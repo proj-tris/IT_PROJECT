@@ -1,0 +1,28 @@
+{{extend 'layout1.html'}}
+<style type="text/css">
+	#tit{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	.edit{
+		position: relative;
+		left: 10%;
+	}
+</style>
+<body onload="Title()">
+<h3 id="h2_tag"></h3>
+<ol>
+{{for item in out:}}
+	<li><a href='http://127.0.0.1:8000/Tris/default/peak?q={{=item['title']}}&type={{=item['type']}}'><span id="tit">{{=item['title']}}</span></a><br>Added on: {{=item['added']}}<a class ="edit" href = 'http://127.0.0.1:8000/Tris/default/edit?q={{=item['title']}}&type={{=item['type']}}'>Edit</li></a>
+	<br>
+	{{pass}}
+</ol>
+</body>
+<script type="text/javascript">
+	function Title () {
+		x = document.URL;
+		y = x.split("="); 
+		document.getElementById('h2_tag').innerHTML = "Search Results for " + y[1] + "...";
+		document.title = "Search Results for " + y[1];
+	}
+</script>

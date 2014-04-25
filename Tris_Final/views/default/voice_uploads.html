@@ -1,0 +1,24 @@
+{{extend 'layout1.html'}}
+<style type="text/css">
+	#tit{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	.edit{
+		position: relative;
+		left: 10%;
+	}
+</style>
+<body onload="title()">
+<ol>
+		{{for item in reversed(rows):}}
+	<li><a href='http://127.0.0.1:8000/Tris/default/peak?q={{=item['title']}}&type=voice'><span id="tit">{{=item['title']}}</span></a><br>Added on: {{=item['added']}}<a class ="edit" href = 'http://127.0.0.1:8000/Tris/default/edit?q={{=item['title']}}&type=voice'>Edit</li></a>
+	<br>
+	{{pass}}
+</ol>
+</body>
+<script type="text/javascript">
+	function title () {
+		document.title = "Voice Uploads";
+	}
+</script>

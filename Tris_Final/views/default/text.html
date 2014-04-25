@@ -1,0 +1,108 @@
+{{extend 'layout1.html'}}
+<script type="text/javascript">
+	function loadXMLDoc()
+	{
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+  		{// code for IE7+, Firefox, Chrome, Opera, Safari
+ 			xmlhttp=new XMLHttpRequest();
+		}
+		else
+  		{// code for IE6, IE5
+  			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function()
+		{
+  			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+	    	{
+	    		alert("Success");
+    		}
+  		}
+  		var note = document.getElementById('txtarea').value;
+  		var font = document.getElementById('select_inp').value;
+  		var title = document.getElementById('title_tag').value;
+  		var tag = document.getElementById('tag_inp').value;
+		xmlhttp.open("GET","temp?note=" + note + "&font=" + font + "&title=" + title + "&tag=" + tag,true);
+		xmlhttp.send();
+	}
+	function loaded () {
+		var height = $(window).height();
+		document.getElementById("txtarea").style.height = height*0.730+"px" ;
+	}
+
+	function changefont () {
+		var fnt = document.getElementById('select_inp').value;
+		var height = $(window).height();
+		console.log("Changed font to " + fnt);
+		document.getElementById('txtarea').setAttribute("style","font-family: " + fnt);
+		document.getElementById('txtarea').style.height = height*0.730+"px";
+	}
+</script>
+<style>
+	body{
+		background-image: url("http://127.0.0.1:8000/Tris/static/images/text_input.jpg");
+	}
+	#txtarea{
+		display: block;
+		width: 100%;
+		margin-top: 2em;
+		position: relative;
+		border: none;
+	}
+	#filename{
+		display: block;
+		background-color: white;
+		width: 59.5%;
+		height: 2em;
+		position: relative;
+		border: none;
+		overflow: hidden;
+		border-radius: 10px;
+	}
+	#save{
+		height: 2em;
+		width: 6em;
+		background-color: #4AB825;
+		border-radius: 10px;
+	}
+	#title_inp{
+		list-style: none;
+		margin-left: 15%;
+		margin-top: -3%;
+	}
+	#title_inp > li{
+		float: left;
+		padding-left: 2.17em;
+	}
+	#title_tag{
+		height: 1.2em;
+		vertical-align: middle;
+		border: 1px solid grey;
+	}
+	#select_inp{
+		height: 2em;
+		border-radius: 10px;
+	}
+	#tag_inp{
+		border: 1px solid grey;
+		width: 10em;
+		height: 1.2em;
+	}
+</style>
+<body onload="loaded()">
+	<ul id="title_inp">
+		<li><input type="submit" value="Save" id="save" onclick="loadXMLDoc()"></li>
+		<li><input type="text" placeholder="Title" id="title_tag"></li>
+		<li>
+			<select id="select_inp" onclick="changefont()">
+ 				<option value="Arial">Arial</option>
+  				<option value="Arial Black">Arial-Black</option>
+  				<option value="Courier New">Courier New</option>
+			</select>
+		</li>
+		<li><input type="text", placeholder="Tag" id="tag_inp"></li>
+	</ul>
+	<br>
+<textarea id="txtarea" wrap="soft"></textarea>
+</body>
+	
